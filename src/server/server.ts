@@ -4,9 +4,11 @@ import getLeafs from "./get-leafs";
 import getUTXOs from "./get-utxos";
 import getTreeIndex from "./get-treeIndex";
 import { IndexerCollection } from "../shared/database/unspent-collection";
+import { submitTX } from "./submit-tx";
+import bodyParser from "body-parser";
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use(cors());
 
 app.route("/utxos").get(getUTXOs);
@@ -29,6 +31,10 @@ app.route("/health").get(async (req, res) => {
   };
   return res.status(200).json({ isSuccess: true, data: data });
 });
+
+//for relayer
+
+app.route("/relayer/submit-proof/:methods").post(submitTX);
 
 app.use((req, res, next) => {
   res.status(404).send("Route Not found");

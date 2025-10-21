@@ -51,6 +51,11 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 const Main = async () => {
+  if (!config.enable_indexing) {
+    logger.info("Indexing is disabled. Starting server...");
+    return;
+  }
+
   const address = [config.zlink_contract_address];
   logger.info(`Starting zLink UTXOs Indexer...`);
 

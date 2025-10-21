@@ -15,6 +15,8 @@ export interface config {
   enableDetailsLogging: boolean;
 
   mongodbURI: string;
+  enable_indexing: boolean;
+  private_key?: string;
 }
 
 export interface RpcEndpoint {
@@ -116,4 +118,10 @@ export interface IndexerCheckPoint {
   id: string;
   lastIndexedBlock: number;
   latestBlock: number;
+}
+
+export interface SubmitTXRequest {
+  proof: string;
+  publicSignals: string;
+  encryptedData: string;
 }

@@ -31,6 +31,8 @@ const config: ConfigType = {
 
   //database
   mongodbURI: process.env["MONGODB_URI"] as string,
+  private_key: process.env["PRIVATE_KEY"] as string,
+  enable_indexing: process.env["ENABLE_INDEXING"] === "true",
 };
 
 export default config;
