@@ -23,7 +23,7 @@ class UnspentCollection {
       // Create compound unique index to prevent duplicates
       await collection.createIndex(
         { txid: 1, blockNumber: 1 },
-        { unique: true, name: "txid_block_unique" }
+        { name: "txid_block_idx" }
       );
 
       // Index for querying by block number
