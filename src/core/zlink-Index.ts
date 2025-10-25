@@ -88,7 +88,9 @@ class zLinkIndex {
       if (!this.UnspentCollection) {
         this.UnspentCollection = await UnspentCollection.initilize();
       }
-      await this.UnspentCollection.insertUTXOs(Unspents);
+      //only insert unspent from block 9486466 onwards (For testing purposes)
+      const unspentsToInsert = Unspents.filter((d) => d.blockNumber >= 9486466);
+      await this.UnspentCollection.insertUTXOs(unspentsToInsert);
     }
   }
 

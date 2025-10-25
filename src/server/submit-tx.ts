@@ -44,7 +44,7 @@ export const submitTX = async (req: Request, res: Response) => {
         const txHash = await zLinkContract.unshieldNative(
           JSON.parse(proof_decoded),
           JSON.parse(publicSignals_decoded),
-          encryptedData_decoded
+          JSON.parse(encryptedData_decoded)
         );
 
         if (!txHash) {
