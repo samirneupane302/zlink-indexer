@@ -49,6 +49,7 @@ class BlockChainSync {
   async startSync(addresses: string[], topics: string[]): Promise<void> {
     this.addresses = addresses;
     this.topics = topics;
+    let erroCount = 0;
 
     while (!this.isClosed) {
       try {
@@ -78,6 +79,12 @@ class BlockChainSync {
               `Successfully indexed blocks up to ${this.startBlockNumber}`
             );
           } catch (error) {
+            erroCount++;
+            if (erroCount > 10) {
+              logger.error("Too many errors, stopping sync");
+              this.isClosed = true;
+              break;
+            }
             logger.error("Error in sync cycle, retrying:", error);
             // Wait before retrying the current batch
             await sleep(SYNC_CONFIG.SYNC_CYCLE_DELAY_MS * 2);
