@@ -3,9 +3,6 @@ import { SubmitTXRequest } from "../types";
 import ZLinkContract from "../utils/zLink-Contract";
 import config from "../config";
 
-const ZLINK_PRIVATE_TRANSFER_CONTRACT_ADDRESS =
-  "0xAd149464777479A21aebc157a67cD6EE369085f2";
-
 export const submitTX = async (req: Request, res: Response) => {
   try {
     if (!config.private_key) {
@@ -59,7 +56,7 @@ export const submitTX = async (req: Request, res: Response) => {
 
       case "transferPrivate":
         const zLinkPrivateTransferContract = new ZLinkContract(
-          ZLINK_PRIVATE_TRANSFER_CONTRACT_ADDRESS
+          config.zlink_contract_address
         );
 
         const txHash_privateTransfer =
