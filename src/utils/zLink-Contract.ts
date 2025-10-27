@@ -5,7 +5,7 @@ import simulateZLink from "./compute-proof";
 
 const ZLINK_CONTRACT_ABI: string[] = [
   "function unshieldNative((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[7] publicSignals, bytes encryptedUTXOsUpdate) returns (bool)",
-  "function transferShieldedAssets((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[50] publicSignals, bytes[20] encryptedUTXOsUpdates) payable returns (bool)",
+  "function transferShieldedAssets((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[50] publicSignals, bytes[20] encryptedUTXOsUpdates, address receiver) payable returns (bool)",
 ];
 
 class ZLinkContract {
