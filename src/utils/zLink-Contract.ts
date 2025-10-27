@@ -46,7 +46,8 @@ class ZLinkContract {
   public async unshieldNative(
     proof: any,
     publicSignals: any,
-    encryptedUTXOsUpdate: any
+    encryptedUTXOsUpdate: any,
+    receiver: string
   ) {
     const contract = await this.getContract();
     if (!contract) return;
@@ -56,7 +57,8 @@ class ZLinkContract {
       const tx = await contract["unshieldNative"]!(
         proofHelper(proof),
         publicSignals,
-        encryptedUTXOsUpdate
+        encryptedUTXOsUpdate,
+        receiver
       );
       return tx?.hash ?? null;
     } catch (error) {

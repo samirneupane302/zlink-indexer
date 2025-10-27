@@ -19,9 +19,10 @@ export const submitTX = async (req: Request, res: Response) => {
         .json({ isSuccess: false, message: "Invalid method" });
     }
 
-    const { proof, publicSignals, encryptedData } = req.body as SubmitTXRequest;
+    const { proof, publicSignals, encryptedData, receiver } =
+      req.body as SubmitTXRequest;
 
-    if (!proof || !publicSignals || !encryptedData) {
+    if (!proof || !publicSignals || !encryptedData || !receiver) {
       return res
         .status(400)
         .json({ isSuccess: false, message: "Invalid request" });
@@ -41,7 +42,8 @@ export const submitTX = async (req: Request, res: Response) => {
         const txHash = await zLinkContract.unshieldNative(
           JSON.parse(proof_decoded),
           JSON.parse(publicSignals_decoded),
-          JSON.parse(encryptedData_decoded)
+          JSON.parse(encryptedData_decoded),
+          receiver
         );
 
         if (!txHash) {

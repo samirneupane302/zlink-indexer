@@ -124,4 +124,5 @@ export interface SubmitTXRequest {
   proof: string;
   publicSignals: string;
   encryptedData: string;
+  receiver: string;
 }
