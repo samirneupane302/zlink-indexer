@@ -30,7 +30,7 @@ class ZLinkContract {
     if (!contract) return;
 
     try {
-      const tx = await contract["transferShieldedNative"]!(
+      const tx = await contract["transferShieldedAssets"]!(
         proofHelper(proof),
         publicSignals,
         encryptedUTXOsUpdates
