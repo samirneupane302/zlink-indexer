@@ -15,7 +15,7 @@ if (
 
 const config: ConfigType = {
   start_block: parseInt(process.env["START_BLOCK"] || "1"),
-
+  chain_id: parseInt(process.env["CHAIN_ID"] || "1"),
   block_difference: parseInt(process.env["BLOCK_DIFFERENCE"] || "10"),
   rpc_url: process.env["RPC_URL"] as string,
   zlink_contract_address: process.env["ZLINK_CONTRACT_ADDRESS"] as string,

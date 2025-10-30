@@ -15,7 +15,7 @@ async function connectToDB() {
   } catch (error) {
     throw new Error("Failed to connect to MongoDB");
   }
-  db = client.db("zlink-index");
+  db = client.db(`zlink-index-${config.chain_id}`);
   return db;
 }
 

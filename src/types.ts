@@ -2,6 +2,7 @@ import { Transaction } from "web3";
 
 export interface config {
   start_block: number;
+  chain_id: number;
   block_difference: number;
   rpc_url: string;
   zlink_contract_address: string;
