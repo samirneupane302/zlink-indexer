@@ -33,7 +33,7 @@ class simulateZLink {
       BigInt(this.hashEncryptedData(data))
     );
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 5; i++) {
       //don't check the padding output commitment
       if (OutputCommitments[i] === this.paddingOutputCommit) continue;
 
