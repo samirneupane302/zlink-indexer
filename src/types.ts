@@ -18,6 +18,7 @@ export interface config {
   mongodbURI: string;
   enable_indexing: boolean;
   private_key?: string;
+  http_port: number;
 }
 
 export interface RpcEndpoint {

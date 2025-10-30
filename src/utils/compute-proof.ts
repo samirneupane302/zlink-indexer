@@ -15,13 +15,13 @@ class simulateZLink {
     const PublicSignalsEncryptedDataHashes: bigint[] = [];
     const OutputCommitments: string[] = [];
 
-    for (let i = 0; i < 20; i++) {
-      const commitment = publicSignals[i + 10];
-      const encryptedDataHash = publicSignals[i + 30];
+    for (let i = 0; i < 5; i++) {
+      const commitment = publicSignals[i + 20];
+      const encryptedDataHash = publicSignals[i + 25];
 
       if (!encryptedDataHash)
         throw new Error(
-          `Encrypted data hash not found in public signals Index ${i + 30}`
+          `Encrypted data hash not found in public signals Index ${i + 25}`
         );
       OutputCommitments.push(
         "0x" + BigInt(commitment!).toString(16).padStart(64, "0")

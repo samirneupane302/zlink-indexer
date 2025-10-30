@@ -33,6 +33,7 @@ const config: ConfigType = {
   mongodbURI: process.env["MONGODB_URI"] as string,
   private_key: process.env["PRIVATE_KEY"] as string,
   enable_indexing: process.env["ENABLE_INDEXING"] === "true",
+  http_port: parseInt(process.env["HTTP_PORT"] || "8323"),
 };
 
 export default config;
