@@ -4,7 +4,7 @@ class simulateZLink {
   private fieldModule =
     21888242871839275222246405745257275088548364400416034343698204186575808495617n;
   private paddingOutputCommit =
-    "0x29454785535387a69486462c163062cec40e59bd0fa8abd5ce153a7a7271ac41";
+    "0x13f768915c1ecd8736e113be0807a9b322814b6d8657ea145a2a8a2e29eebc76";
 
   public async simulatePrivateTransfer(
     publicSignals: string[],
