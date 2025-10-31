@@ -13,16 +13,24 @@ export const submitTX = async (req: Request, res: Response) => {
 
     const methods = req.params["methods"] as string;
 
-    if (!["unshieldNative", "transferPrivate"].includes(methods)) {
+    if (
+      !["unshieldNative", "transferPrivate", "unshieldERC20"].includes(methods)
+    ) {
       return res
         .status(400)
         .json({ isSuccess: false, message: "Invalid method" });
     }
 
-    const { proof, publicSignals, encryptedData, receiver } =
+    const { proof, publicSignals, encryptedData, receiver, tokenAddress } =
       req.body as SubmitTXRequest;
 
-    if (!proof || !publicSignals || !encryptedData || !receiver) {
+    if (
+      !proof ||
+      !publicSignals ||
+      !encryptedData ||
+      !receiver ||
+      !tokenAddress
+    ) {
       return res
         .status(400)
         .json({ isSuccess: false, message: "Invalid request" });
@@ -55,6 +63,28 @@ export const submitTX = async (req: Request, res: Response) => {
         return res
           .status(200)
           .json({ isSuccess: true, data: { txHash: txHash } });
+
+      case "unshieldERC20":
+        const zLinkERC20Contract = new ZLinkContract(
+          config.zlink_contract_address
+        );
+        const txHashERC20 = await zLinkERC20Contract.unshieldERC20(
+          JSON.parse(proof_decoded),
+          JSON.parse(publicSignals_decoded),
+          JSON.parse(encryptedData_decoded),
+          tokenAddress,
+          receiver
+        );
+
+        if (!txHashERC20) {
+          return res
+            .status(500)
+            .json({ isSuccess: false, message: "Transaction failed" });
+        }
+
+        return res
+          .status(200)
+          .json({ isSuccess: true, data: { txHash: txHashERC20 } });
 
       case "transferPrivate":
         const zLinkPrivateTransferContract = new ZLinkContract(

@@ -127,4 +127,5 @@ export interface SubmitTXRequest {
   publicSignals: string;
   encryptedData: string;
   receiver: string;
+  tokenAddress: string;
 }

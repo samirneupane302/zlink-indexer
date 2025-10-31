@@ -6,6 +6,7 @@ import simulateZLink from "./compute-proof";
 const ZLINK_CONTRACT_ABI: string[] = [
   "function unshieldNative((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[7] publicSignals, bytes encryptedUTXOsUpdate, address receiver) returns (bool)",
   "function transferShieldedAssets((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[30] publicSignals, bytes[5] encryptedUTXOsUpdates) payable returns (bool)",
+  "function unshieldERC20((uint256[2] pi_a, uint256[2][2] pi_b, uint256[2] pi_c) proof, uint256[7] publicSignals, bytes calldata encryptedUTXOsUpdate, address tokenAddress, address receiver) returns (bool)",
 ];
 
 class ZLinkContract {
@@ -34,6 +35,32 @@ class ZLinkContract {
         proofHelper(proof),
         publicSignals,
         encryptedUTXOsUpdates
+      );
+      return tx?.hash ?? null;
+    } catch (error: unknown) {
+      //@ts-ignore
+      console.log((error as Error).message);
+      return null;
+    }
+  }
+
+  public async unshieldERC20(
+    proof: any,
+    publicSignals: any,
+    encryptedUTXOsUpdate: any,
+    tokenAddress: string,
+    receiver: string
+  ) {
+    const contract = await this.getContract();
+    if (!contract) return;
+
+    try {
+      const tx = await contract["unshieldERC20"]!(
+        proofHelper(proof),
+        publicSignals,
+        encryptedUTXOsUpdate,
+        tokenAddress,
+        receiver
       );
       return tx?.hash ?? null;
     } catch (error: unknown) {
