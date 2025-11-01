@@ -127,14 +127,9 @@ class BlockChainSync {
         this.startBlockNumber !== 0 &&
         latestBlockNumber <= this.startBlockNumber
       ) {
-        logger.info(
-          "No new blocks to process, Latest block: " +
-            latestBlockNumber +
-            " Start block: " +
-            this.startBlockNumber
-        );
         return;
       }
+
       this.latestBlockNumber = latestBlockNumber;
       logger.info(`Current latest block: ${this.latestBlockNumber}`);
     } catch (error) {
