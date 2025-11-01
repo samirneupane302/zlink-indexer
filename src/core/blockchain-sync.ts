@@ -57,7 +57,8 @@ class BlockChainSync {
 
         while (
           !this.isClosed &&
-          this.startBlockNumber < this.latestBlockNumber
+          this.startBlockNumber <
+            this.latestBlockNumber - config.block_difference
         ) {
           try {
             await this.runSync();
