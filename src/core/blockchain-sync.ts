@@ -174,7 +174,7 @@ class BlockChainSync {
     difference: number;
   } {
     const startBlock = this.startBlockNumber;
-    const endBlock = this.latestBlockNumber;
+    const endBlock = this.latestBlockNumber - config.block_difference;
 
     const difference = endBlock - startBlock;
     const end =
