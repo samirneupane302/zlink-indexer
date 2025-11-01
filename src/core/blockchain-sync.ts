@@ -125,7 +125,7 @@ class BlockChainSync {
       //no new blocks produced yet, so we can't sync
       if (
         this.startBlockNumber !== 0 &&
-        latestBlockNumber - config.block_difference <= this.startBlockNumber
+        latestBlockNumber <= this.startBlockNumber
       ) {
         logger.info(
           "No new blocks to process, Latest block: " +
